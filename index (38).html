@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            /* This ensures the video fills the browser window perfectly */
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="rick" autoplay muted loop playsinline>
+        <source src="https://shattereddisk.github.io/rickroll/rickroll.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        // Reliability script: Forces the video to play if the browser throttles it
+        const v = document.getElementById('rick');
+        v.play().catch(() => {
+            // If the browser strictly blocks it, a single click anywhere will start it
+            window.addEventListener('click', () => {
+                v.play();
+            }, { once: true });
+        });
+    </script>
+
+</body>
+</html>
